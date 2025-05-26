@@ -56,40 +56,63 @@ A web-based application for car classification and object detection, built for t
 
 3. Ensure the backend is running to handle API requests.
 
-## Deployment to Production
 
-### Backend (e.g., Heroku)
+## Deployment to Render Production
 
-1. Install Heroku CLI and log in:
+The application is deployed on Render as a Web Service, hosting both the Flask API and static frontend.
 
+### Prerequisites
+- Render account
+- GitHub repository with the project
+
+### Steps
+1. **Push to GitHub**:
    ```bash
-    heroku login
+   cd car-detection-project
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git remote add origin https://github.com/your-username/car-detection-project.git
+   git push origin main
+   ```
+   - If models exceeds 100MB, use Git LFS:
+     ```bash
+     git lfs install
+     git lfs track "*.h5"
+     git add .gitattributes backend/mobilenet_bbox_model.h5
+     ...
+     git commit -m "Add model with LFS"
+     git push origin main
+     ```
 
-2. Create a Heroku app:
+2. **Create Render Web Service**:
+   - Log in to [render.com](https://render.com).
+   - New > Web Service > Connect your GitHub repository.
+   - Configure:
+     - **Runtime**: Python
+     - **Build Command**: `pip install -r backend/requirements.txt`
+     - **Start Command**: `gunicorn backend.app:app --bind 0.0.0.0:$PORT`
+     - **Root Directory**: Leave blank
+   - Deploy the service.
 
-   ```bash
-    heroku create car-detection-api
+3. **Test Deployment**:
+   - Access the Render URL (`https://car-detection-project.onrender.com`).
+   - Verify:
+     - Frontend loads with Heading, Project Description, File Upload, and Team Members.
+     - Image upload displays a red bounding box and coordinates.
+     - Mailbox icons toggle emails.
 
-3. Add a `Procfile` in `backend/`:
+## Images
+Screenshots and visualizations enhance the project documentation. Images are stored in the `backend/` folder.
 
-    ```text
-    web: gunicorn app:app
+### Example Screenshots
+- **Frontend Interface**:
+  ![Frontend Interface](backend/Screenshot-GL-V1.png)
+  *The main interface with file upload and the team members section.*
 
-4. Install gunicorn:
+- **Bounding Box Output**:
+  ![Bounding Box Output](images/Screenshot-GL-V2.png)
+  *Sample output showing a car with a red bounding box and coordinates.*
 
-   ```bash
-    pip install gunicorn
-    pip freeze > requirements.txt
-
-5. Deploy to Heroku:
-
-   ```bash
-    git init
-    git add .
-    git commit -m "Initial commit"
-    heroku git:remote -a car-detection-api
-    git push heroku main
-
-6. Update the frontend's fetch URL to the Heroku app URL (e.g., https://car-detection-api.herokuapp.com/predict).
-
-https://car-detection-project.onrender.com
+- **Full Page Output**:
+  ![Full Page](images/Screenshot-GL-V3.png)
