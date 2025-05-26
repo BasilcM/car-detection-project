@@ -91,3 +91,5 @@ A web-based application for car classification and object detection, built for t
     git push heroku main
 
 6. Update the frontend's fetch URL to the Heroku app URL (e.g., https://car-detection-api.herokuapp.com/predict).
+
+https://car-detection-project.onrender.com
