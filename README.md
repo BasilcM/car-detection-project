@@ -115,4 +115,4 @@ Screenshots and visualizations enhance the project documentation. Images are sto
   *Sample output showing a car with a red bounding box and coordinates.*
 
 - **Full Page Output**:
-  ![Full Page](backend/Screenshot-GL-V3.png)
+  ![Full Page](backend/Screenshot-GL-V4.png)
