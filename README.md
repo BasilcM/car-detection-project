@@ -111,8 +111,8 @@ Screenshots and visualizations enhance the project documentation. Images are sto
   *The main interface with file upload and the team members section.*
 
 - **Bounding Box Output**:
-  ![Bounding Box Output](images/Screenshot-GL-V2.png)
+  ![Bounding Box Output](backend/Screenshot-GL-V2.png)
   *Sample output showing a car with a red bounding box and coordinates.*
 
 - **Full Page Output**:
-  ![Full Page](images/Screenshot-GL-V3.png)
+  ![Full Page](backend/Screenshot-GL-V3.png)
